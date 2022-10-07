@@ -55,7 +55,7 @@ ROOT_URLCONF = 'city_tour.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'basetemplates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
