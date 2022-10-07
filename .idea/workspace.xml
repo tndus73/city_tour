@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9f4e594-c9d3-458d-bc76-2ee1768bc4ac" name="Changes" comment="home url,view 수정추가">
+    <list default="true" id="d9f4e594-c9d3-458d-bc76-2ee1768bc4ac" name="Changes" comment="img파일 사이트에 올리기">
+      <change beforePath="$PROJECT_DIR$/.idea/city_tour.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/city_tour.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/city_tour/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/city_tour/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,17 +35,21 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2FhamiqTn1sYCupsd5UKYAOjfCy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/jsy/DJANGOexam/exerciseproject",
+    "last_opened_file_path": "C:/jsy/DJANGOexam/city_tour",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
@@ -95,7 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665030557539</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="img파일 사이트에 올리기">
+      <created>1665032406632</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665032406632</updated>
+    </task>
+    <task id="LOCAL-00006" summary="img파일 사이트에 올리기">
+      <created>1665032527614</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665032527614</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,10 +146,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="readme 소개" />
     <MESSAGE value="테스트2" />
     <MESSAGE value="home url,view 추가" />
     <MESSAGE value="home url,view 수정추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="home url,view 수정추가" />
+    <MESSAGE value="img파일 사이트에 올리기" />
+    <option name="LAST_COMMIT_MESSAGE" value="img파일 사이트에 올리기" />
   </component>
 </project>
