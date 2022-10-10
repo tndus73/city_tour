@@ -17,5 +17,5 @@ def home(request) :
 def header(request):
  return render(request, 'header.html')
 
-def test1(request):
- return render(request, 'header.html')
+def introduction(request):
+ return render(request,"introduction.html")
