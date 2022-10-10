@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9f4e594-c9d3-458d-bc76-2ee1768bc4ac" name="Changes" comment="상속파일추가">
-      <change afterPath="$PROJECT_DIR$/common/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/templates/common/form_errors.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/templates/common/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/views.py" afterDir="false" />
+    <list default="true" id="d9f4e594-c9d3-458d-bc76-2ee1768bc4ac" name="Changes" comment="로그인 기능추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basetemplates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/basetemplates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/city_tour/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/city_tour/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/city_tour/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/city_tour/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665109042975</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="로그인 기능추가">
+      <created>1665133627799</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665133627799</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +167,7 @@
     <MESSAGE value="home url,view 수정추가" />
     <MESSAGE value="img파일 사이트에 올리기" />
     <MESSAGE value="상속파일추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="상속파일추가" />
+    <MESSAGE value="로그인 기능추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="로그인 기능추가" />
   </component>
 </project>
