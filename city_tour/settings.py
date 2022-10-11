@@ -128,6 +128,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 로그인 성공후 이동 URL
-LOGIN_REDIRECT_URL = '/web/home/'
+LOGIN_REDIRECT_URL = 'http://localhost:8000/web/home/'
 # 로그아웃 시 이동하는 URL
-LOGOUT_REDIRECT_URL = '/web/home/'
+LOGOUT_REDIRECT_URL = 'http://localhost:8000/web/home/'

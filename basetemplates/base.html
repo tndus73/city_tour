@@ -63,7 +63,7 @@
                                 <li><a href = "{% url 'common:logout' %}" style = "color:white"> {{ user.username }}님 로그아웃 </a></li>
                             {% else %}
                                 <li><a href = "{% url 'common:login' %}" style = "color:white">로그인</a></li>
-                            {% else if%}
+                            {% endif%}
                             <li><a href = "#" style = "color:white">회원가입</a></li>
                             <li><a href = "#" style = "color:white">번역</a></li>
                             <li><a href = "#" style = "color:white">관리자</a></li>
