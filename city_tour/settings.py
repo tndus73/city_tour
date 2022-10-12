@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import my_settings
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,8 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-8dit_*w58t+e!n)s-d%6*)k5^vw3v-oxe@ru-zkn!vdhyx4(*d'
-SECRET_KEY = my_settings.SECRET_KEY
+SECRET_KEY = 'django-insecure-8dit_*w58t+e!n)s-d%6*)k5^vw3v-oxe@ru-zkn!vdhyx4(*d'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -75,15 +75,14 @@ WSGI_APPLICATION = 'city_tour.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-"""
-DATABASES = my_settings.DATABASES
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
