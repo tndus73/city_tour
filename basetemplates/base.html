@@ -22,7 +22,7 @@
 
         .header{
             display:flex; /*가로로 붙음*/
-            width : 1280px; /*아이콘, 메뉴 폭*/
+            width : 1350px; /*아이콘, 메뉴 폭*/
             margin : auto;
         }
         .iconarea{
@@ -36,7 +36,7 @@
 
         .nav > li{
             line-height: 95px;
-            margin-left : 84px; /*소개, 전국 등 이동링크 간격*/
+            margin-left : 95px; /*소개, 전국 등 이동링크 간격*/
             font-size : 19px;
             font-weight : bold;
         }
@@ -59,14 +59,13 @@
                             <li><a href = "http://localhost:8000/web/introduction/" style = "color:white">소개</a></li>
                             <li><a href = "#" style = "color:white">전국</a></li>
                             <li><a href = "http://localhost:8000/board/board/" style = "color:white">게시판</a></li>
+                            <li><a href = "#" style = "color:white">번역</a></li>
+                            <li><a href = "#" style = "color:white">관리자</a></li>
                             {% if user.is_authenticated %}
                                 <li><a href = "{% url 'common:logout' %}" style = "color:white"> {{ user.username }}님 로그아웃 </a></li>
                             {% else %}
                                 <li><a href = "{% url 'common:login' %}" style = "color:white">로그인</a></li>
                             {% endif %}
-                            <li><a href = "#" style = "color:white">회원가입</a></li>
-                            <li><a href = "#" style = "color:white">번역</a></li>
-                            <li><a href = "#" style = "color:white">관리자</a></li>
                         </ul>
                 </div>
             </div>
