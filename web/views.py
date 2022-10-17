@@ -18,4 +18,7 @@ def header(request):
  return render(request, 'header.html')
 
 def introduction(request):
- return render(request,"introduction.html")
+ return render(request, 'introduction.html')
+
+def manager(request):
+ return render(request, 'manager.html')
