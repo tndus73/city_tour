@@ -38,3 +38,8 @@ def header(request):
 def introduction(request):
  return render(request,"introduction.html")
 
+def manager(request):
+ return render(request,"manager.html")
+
+
+
