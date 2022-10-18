@@ -20,5 +20,5 @@ class Citytourdata(models.Model):
     id          = models.IntegerField(primary_key=True)
 
     def __str__(self):
-        return self.number+","+self.city2+","+self.city2+","+self.cos_name+","+self.cos_info+","+self.start_time+","+self.close_time+","+self.url+","+self.number
+        return self.number+","+self.city1+","+self.city2+","+self.cos_name+","+self.cos_info+","+self.start_time+","+self.close_time+","+self.url+","+self.number
 

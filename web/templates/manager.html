@@ -3,22 +3,18 @@
 {% block title%}관리자 페이지{% endblock %}
 
 {% block css %}
-    .introlr {
-        width : 100%;
-        height : 400px;
-    }
     .intro_left{
         text-align : center;
-        width : 49%;
-        height : 350px;
+        width : 48%;
+        height : 430px;
         float : left;
-        box-sizing: border-box;
+        box-sizing : border-box;
     }
     .intro_right{
-        text-align : center;
+        text-align : left;
         width : 48%;
-        height : 350px;
-        padding-top : 80px;
+        height : 450px;
+        padding-top : 50px;
         padding-right : 100px;
         float : right;
         box-sizing: border-box;
@@ -27,53 +23,105 @@
         width : 45%;
         height : 400px;
     }
+    hr{
+        margin: 30px auto;
+        width: 100px;
+        background:orange;
+        height:5px;
+        border:0;
+    }
+    h1{
+        font-family: 'InkLipquid';
+        font-size: 30px
+    }
+    h2{
+        font-family: 'Pretendard-Regular';
+        font-size: 38px
+    }
+    h3{
+        font-family: 'Pretendard-Regular';
+        font-size: 20px
+        color: gray;
+    }
+    footer {
+        width : 100%;
+        height : 40px;
+        clear : both;
+        background-color : orange;
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom:30px;
+        color: white;
+        font-family: 'Pretendard-Regular';
+    }
+    @font-face {
+        font-family: 'Pretendard-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'InkLipquid';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
 {% endblock %}
 
 {% block contents %}
 {% load static %}
     <div class = "intro">
         <br><br><br>
-        <h1 style = "text-align:center">관리자 소개</h1>
+        <h1 style = "text-align:center">Who we are</h1>
         <br>
-        <h2 style = "text-align:center">페이지 관리자를 소개합니다</h2>
-        <h2 style = "text-align:center">Let me introduce you to the manager</h2>
+        <hr>
+        <h2 style = "text-align:center">MEET OUR TEAM</h2>
     </div><br><br><br><br><br>
-<!--위는 우리 페이지는 ~~이고 ~~기능을 담고 있다-->
+
+<!--관리자 소개-->
 <div class = "introlr">
     <div class = "intro_left">
+        <img class = "intropic" src="/static/images/rabbit1.png">
     </div>
     <div class = "intro_right">
-        <h1>소개할게요</h1>
-        <br><br>
-        <h2>선택</h2>
-        <h2>선택</h2>
+        <h3>◾Name: 송예림(Song Ye Lim)</h3>
+        <h3>◾E-mail: yelim10002@naver.com</h3>
+        <h3>◾Skills: Photoshop, Illustrator, Premiere Pro, HTML5, CSS</h3>
+        <h3>◾Experience:<br>
+            <font color = "darkgray">강원도간판디자인 우수상<br>박경리문학공원&돼지문화원 홍보대사<br>서울PR학회대회 참여<br>(주)한라홀딩스 만도블랙박스 광고 제작
+        <br>블랙박스 소비자조사&그래프시각화<br>멀티캠퍼스 융복합 프로젝트형 빅데이터 분석 서비스 개발<br></font></h3>
     </div>
 </div>
-<!--첫 홈페이지에서 지역을 선택하면 해당 지역의 시티투어를 소개해준다.-->
+<!--소개2-->
 <div class = "introlr">
     <div class = "intro_left">
-        <img class = "intropic" src="/static/images/rabbit.png">
+        <img class = "intropic" src="/static/images/alpaca1.png">
     </div>
     <div class = "intro_right">
-        <h2>송예림</h2>
+        <h3>◾Name: 강민구 (Kang Min Gu)</h3>
+        <h3>◾E-mail: alsrn5190@naver.com</h3>
+        <h3>◾Skills: Python, Django, HTML5, CSS, JavaScript</h3>
+        <h3>◾Experience:<br>
+            <font color = "darkgray">인천시 소비자연맹 스피치대회<br>운남성 인천시 청년문화교류회
+                <br>멀티캠퍼스 융복합 프로젝트형 빅데이터 분석 서비스 개발</font></h3>
     </div>
 </div>
-<!--소개-->
+<!--소개3-->
 <div class = "introlr">
     <div class = "intro_left">
-        <img class = "intropic" src="/static/images/alpaca.png">
+        <img class = "intropic" src="/static/images/sudangi1.png">
     </div>
     <div class = "intro_right">
-        <h2>강민구</h2>
+        <h3>◾Name: 정수연 (Jung Soo Yeon)</h3>
+        <h3>◾E-mail: 0703319@gmail.com</h3>
+        <h3>◾Skills: Python, Django, HTML5, CSS, JavaScript</h3>
+        <h3>◾Experience:
+            <br><font color = "darkgray">휴먼디지털 인턴<br>공공조달 빅데이터 경진대회<br>따릉이 GPS 데이터 분석을 통한 POI시각화&웹 사이트 개발
+        <br>멀티캠퍼스 융복합 프로젝트형 빅데이터 분석 서비스 개발</font></h3>
     </div>
 </div>
-<!--소개-->
-<div class = "introlr">
-    <div class = "intro_left">
-        <img class = "intropic" src="/static/images/sudangi.png">
-    </div>
-    <div class = "intro_right">
-        <h2>정수연</h2>
-    </div>
-</div>
+    <footer>
+        <p><em>Korea City Tour site(ver1.0)</em></p>
+    </footer>
 {% endblock %}
