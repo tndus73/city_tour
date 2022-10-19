@@ -21,4 +21,3 @@ class Citytourdata(models.Model):
 
     def __str__(self):
         return self.number+","+self.city1+","+self.city2+","+self.cos_name+","+self.cos_info+","+self.start_time+","+self.close_time+","+self.url+","+self.number
-

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}상세 게시판{% endblock %}
+
+{% block contents %}
+    <h1>게시판 내용</h1><br>
+    <h3> 제목 : {{post.name}} </h3> <br>
+    <h4> <내용></내용> <br>
+    <p>{{post.contents}}</p>
+    </h4>
+    <a href="/board/board/">목록</a>
+{% endblock %}

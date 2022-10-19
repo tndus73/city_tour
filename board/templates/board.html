@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}게시판입니다~~{% endblock %}
+{% block title %}게시판 페이지{% endblock %}
 
 {% block css %}
 {% endblock %}
 
 {% block contents %}
+    <h1>게시판</h1>
+    <table>
+        {% for list in lists %}
+            <ul>
+                <li><a href ="{{list.pk}}/">{{list.name}}</a></li>
+            </ul>
+        {% endfor %}
+        <button><a href="writing/">글쓰기</a></button>
+    </table>
+
 {% endblock %}
