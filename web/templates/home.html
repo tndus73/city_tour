@@ -72,6 +72,11 @@
             color : black;
             border : 1px solid black;
         }
+        .cityButton{
+            border : 1px solid black;
+            border-radius : 2px;
+            background-color : white;
+        }
     </style>
 </head>
 
@@ -103,29 +108,46 @@
                 <h1 style = "color:white">전국 시티 투어</h1>
                 <h3 style = "color:white">가고싶은 지역을 선택해주세요.</h3>
             </div>
-            <div class = "select_location">
-                <select class = 'select1'>
-                    <option name = 'select1'>시,도를 선택하세요.</option>
+            <div class = 'select_location'>
+                <select id = 'city1' onchange = "find_city2()">
+                    <option>--시,도를 선택하세요--</option>
                     {% for city in city1 %}
-                    <option name = "select1" value="{{city}}" >{{city}}</option>
+                    <option value="{{city}}" >{{city}}</option>
                     {% endfor %}
                 </select>
-                <select onclick="display_city2">
-                    <option id="city2" name = 'city2'>시,구,군을 선택하세요</option>
-                    {% for city in city2 %}
-                    <option name = "select2" value="{{city}}" >{{city}}</option>
-                    {% endfor %}
+
+                <select id ="city2">
+                    <option>--시,구,군을 선택하세요--</option>
                 </select>
-                <botton class = 'find'>찾기</botton>
+
+                <botton class = "cityButton" onclick="go()">검색</botton>
             </div>
         </div>
     </div>
-<script>
-    function displayCity2(){
-        let city1 =
+    <script>
+        function find_city2(){
+            let selected_city1 = document.getElementById("city1").value;
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                let jsonObj = JSON.parse(xhr.responseText);
+                let dom = document.getElementsByTagName('select')[1];
+                let content="<option>--시,구,군을 선택하세요--</option>\n";
+                    for (let i in jsonObj.city2){
+                        content += "<option value="+jsonObj.city2[i]+">"+jsonObj.city2[i]+"</option>\n"
+                    }
+                console.log(content)
+                dom.innerHTML = content;
+                }xhr.open("GET", "http://localhost:8000/web/homeCity/?selectedCity1="+selected_c
+            ity1);
+            xhr.send();
+            }
 
+        function go(){
+            selected_city1 = document.getElementById("city1").value;
+            selected_city2 = document.getElementById("city2").value;
+            location.href = "http://localhost:8000/web/?????/?selectedCity1="+selected_city1+"&selectedCity2="+selected_city2;
+        }
 
-    }
-</script>
+    </script>
 </body>
 </html>
