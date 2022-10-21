@@ -42,7 +42,7 @@
         }
         .intro_text {
             width : 100%;
-            margin-top: 250px;/*상우하좌*/
+            margin-top: 235px;/*상우하좌*/
             text-align : center;
         }
         .intro_text > h1{
@@ -53,29 +53,69 @@
             padding : 0px;
             text-align : center;
         }
-        .select-selected {
-            width : 200px;
-            border : 1px solid black;
-            border-radius : 1px;
-            appearance : none;
-        }
         select ::-ms-expand{
             display : none;
         }
         select{
             color : black;
+            -o-appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+             appearance: none;
+        }
+        #city1{
+            width: 210px;
+            height: 40px;
+            background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+            background-size: 20px;
+            padding: 5px 30px 5px 10px;
+            border-radius: 4px;
+            border-color : white;
+            outline: 0 none;
+            color : white;
+            font-size : 18px;
+            text-align : center;
+            font-weight : bold;
+        }
+        #city2{
+            width: 210px;
+            height: 40px;
+            background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+            background-size: 20px;
+            padding: 5px 30px 5px 10px;
+            border-radius: 4px;
+            border-color : white;
+            outline: 0 none;
+            color : white;
+            font-size : 18px;
+            text-align : center;
+            font-weight : bold;
         }
         option{
-            color : black;
+            background: white;
+            color: black;
+            padding: 3px 0;
+
         }
         .find{
-            color : black;
-            border : 1px solid black;
+            width: 50px;
+            height: 40px;
+            background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+            border-radius: 1px;
+            border-color : white;
+            color : white;
+            font-size : 18px;
+            font-weight : bold;
         }
         .cityButton{
-            border : 1px solid black;
-            border-radius : 2px;
-            background-color : white;
+            padding : 6px 8px 6px 8px;
+            font-size : 18px;
+            font-weight : bold;
+            border : 1px solid white;
+            background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+            background-size: 20px;
+            border-radius : 4px;
+            color : white;
         }
     </style>
 </head>
@@ -92,7 +132,7 @@
                 <div class = "menu">
                         <ul class="nav">
                             <li><a href = "http://localhost:8000/web/introduction/" style = "color:white">소개</a></li>
-                            <li><a href = "#" style = "color:white">전국</a></li>
+                            <li><a href = "http://localhost:8000/web/whole_country/" style = "color:white">전국</a></li>
                             <li><a href = "http://localhost:8000/board/board/" style = "color:white">게시판</a></li>
                             <li><a href = "#" style = "color:white">번역</a></li>
                             <li><a href = "http://localhost:8000/web/manager/" style = "color:white">관리자</a></li>
@@ -101,29 +141,33 @@
                             {% else %}
                                 <li><a href = "{% url 'common:login' %}" style = "color:white">로그인</a></li>
                             {% endif %}
+                            <!--<li id="google_translate_element" class="hd_lang"></li>-->
+                            <!--<li><a href = "#" style = "color:white">번역</a></li>-->
                         </ul>
                 </div>
             </div>
             <div class = "intro_text">
                 <h1 style = "color:white">전국 시티 투어</h1>
+                <br>
                 <h3 style = "color:white">가고싶은 지역을 선택해주세요.</h3>
             </div>
             <div class = 'select_location'>
                 <select id = 'city1' onchange = "find_city2()">
-                    <option>--시,도를 선택하세요--</option>
+                    <option>시·도를 선택하세요</option>
                     {% for city in city1 %}
                     <option value="{{city}}" >{{city}}</option>
                     {% endfor %}
                 </select>
 
                 <select id ="city2">
-                    <option>--시,구,군을 선택하세요--</option>
+                    <option>시·구·군을 선택하세요</option>
                 </select>
 
                 <botton class = "cityButton" onclick="go()">검색</botton>
             </div>
         </div>
     </div>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
         function find_city2(){
             let selected_city1 = document.getElementById("city1").value;
@@ -131,23 +175,33 @@
             xhr.onload = function(){
                 let jsonObj = JSON.parse(xhr.responseText);
                 let dom = document.getElementsByTagName('select')[1];
-                let content="<option>--시,구,군을 선택하세요--</option>\n";
+                let content="<option>시,구,군을 선택하세요</option>\n";
                     for (let i in jsonObj.city2){
                         content += "<option value="+jsonObj.city2[i]+">"+jsonObj.city2[i]+"</option>\n"
                     }
                 console.log(content)
                 dom.innerHTML = content;
-                }xhr.open("GET", "http://localhost:8000/web/homeCity/?selectedCity1="+selected_c
-            ity1);
+                }
+                xhr.open("GET", "http://localhost:8000/web/homeCity/?selectedCity1="+selected_city1);
             xhr.send();
             }
 
         function go(){
             selected_city1 = document.getElementById("city1").value;
             selected_city2 = document.getElementById("city2").value;
-            location.href = "http://localhost:8000/web/?????/?selectedCity1="+selected_city1+"&selectedCity2="+selected_city2;
+            location.href = "http://localhost:8000/web/selectCity/?selectedCity1="+selected_city1+"&selectedCity2="+selected_city2;
         }
-
+/*
+	    function googleTranslateElementInit() {
+		    new google.translate.TranslateElement({
+			    pageLanguage: 'ko',
+			    includedLanguages: 'ko,zh-CN,zh-TW,ja,vi,th,tl,km,my,mn,ru,en,fr,ar',
+			    //layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+			    autoDisplay: false
+		        }, 'google_translate_element');
+	    }
+*/
     </script>
 </body>
 </html>
+

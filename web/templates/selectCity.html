@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title%}시티투어가 있어요~{% endblock %}
+
+{% block css %}
+    .citytourname{
+        text-align : center;
+    }
+    .citytourcourse {
+        margin : 20px 25% 30px 25%;
+        padding-left : 20px;
+        padding-right : 20px;
+        background-color : #e6f3ff;
+        border-radius: 20px;
+    }
+    footer {
+        width : 100%;
+        height : 40px;
+        clear : both;
+        background-color : orange;
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        padding-bottom:30px;
+        color: white;
+        font-family: 'Pretendard-Regular';
+    }
+
+{% endblock %}
+
+
+{% block contents %}
+    <div><br>
+    {% for cityTour in cityTours %}
+        <div class = "citytourcourse">
+            <br>
+            <h1 class = "citytourname">{{cityTour.cos_name}}</h1>
+            <br><br>
+            <ul class = "course">
+                <li style="list-style-position:inside; list-style-image:url('/static/images/bus_stop.png');font-size:18px;">코스정보 : {{cityTour.cos_info}}</li><br>
+                <li style="list-style-position:inside; list-style-image:url('/static/images/clock.png');font-size:18px;">운영시간 : {{cityTour.start_time}} ~ {{cityTour.close_time}}</li><br>
+                <li style="list-style-position:inside; list-style-image:url('/static/images/telephone.png');font-size:18px;">관리기관 번호 : {{cityTour.number}}</li><br>
+                {% if cityTour.url == "준비 중입니다." %}
+                <li style="list-style-position:inside; list-style-image:url('/static/images/browser.png');font-size:18px;">관리기관 URL : {{cityTour.url}} </li>
+                {% else %}
+                <li style="list-style-position:inside; list-style-image:url('/static/images/browser.png');font-size:18px;">관리기관 URL :<a href = "{{cityTour.url}}"> {{cityTour.url}}</a></li>
+                {% endif %}
+            </ul>
+            <br>
+            <br>
+        </div>
+    {% endfor %}
+    </div>
+    <footer>
+        <p><em>Korea City Tour site(ver1.0)</em></p>
+    </footer>
+{% endblock %}

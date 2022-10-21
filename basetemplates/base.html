@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <title>{% block title %}title{% endblock %}</title>
     <link href = 'https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap' rel="stylesheet">
+
+    {% block head %}
+    {% endblock %}
+
     <style>
         * {
             font-family: 'Noto Sans KR', sans-serif;
             list-style : none;
-            text-decoration : none;
             border-collapse: collapse;
             margin : 0px;
             padding: 0px;
             }
-
+        a {
+            text-decoration : none;
+           }
         .intro_bg{
             background-image: url("/static/images/han-river.jpg");
             width : 100%;
@@ -40,10 +45,15 @@
             font-size : 19px;
             font-weight : bold;
         }
+
     {% block css %}
     {% endblock %}
+
     </style>
 </head>
+
+    {% block script %}
+    {% endblock %}
 
 <body>
     <div class ="wrap">
@@ -57,7 +67,7 @@
                 <div class = "menu" style = "color:white">
                         <ul class="nav">
                             <li><a href = "http://localhost:8000/web/introduction/" style = "color:white">소개</a></li>
-                            <li><a href = "#" style = "color:white">전국</a></li>
+                            <li><a href = "http://localhost:8000/web/whole_country/" style = "color:white">전국</a></li>
                             <li><a href = "http://localhost:8000/board/board/" style = "color:white">게시판</a></li>
                             <li><a href = "#" style = "color:white">번역</a></li>
                             <li><a href = "http://localhost:8000/web/manager/" style = "color:white">관리자</a></li>
@@ -69,8 +79,16 @@
                         </ul>
                 </div>
             </div>
-            {% block contents %}{% endblock %}
+
+            {% block contents %}
+            {% endblock %}
+
         </div>
     </div>
+
+    <script>
+    {% block js %}
+    {% endblock %}
+    </script>
 </body>
 </html>
