@@ -7,7 +7,6 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator
 import json
 
-
 def homepage(request) :
  return HttpResponse("<h1>홈페이지 만들어봅시다!!</h1>")
 
@@ -140,4 +139,3 @@ def whole_country(request):
   "page_obj" : page_obj,
  }
  return render(request, "whole_country.html",context)
-
