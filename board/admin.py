@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib import admin
 
 #게시글 Model 불러오기
-from .models import Board
+from .models import Notice
 
 #관리자가 게시글에 접근가능하게
-admin.site.register(Board)
+admin.site.register(Notice)

@@ -8,6 +8,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Citytourdata(models.Model):
     city1       = models.CharField(max_length=50)
     city2       = models.CharField(max_length=50)

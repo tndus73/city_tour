@@ -4,11 +4,23 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Citytourdata
 from django.http import JsonResponse
-import json
-
 
 def homepage(request) :
  return HttpResponse("<h1>홈페이지 만들어봅시다!!</h1>")
+
+def home(request) :
+ #시도 데이터 출력
+ city1_data = Citytourdata.objects.values('city1').distinct()
+ city1_order = city1_data.order_by('city1')
+ list_city1=[]
+ for i in range(0,len(city1_order),1):
+  a = city1_order[i]
+  list_city1.append(a.get('city1'))
+ print(list_city1)
+ context = {
+  'city1' : list_city1
+ }
+ return render(request, 'home.html',context)
 
 def homecity(request) :
  #시도 데이터 출력

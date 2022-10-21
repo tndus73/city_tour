@@ -132,3 +132,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'http://localhost:8000/web/home/'
 # 로그아웃 시 이동하는 URL
 LOGOUT_REDIRECT_URL = 'http://localhost:8000/web/home/'
+# 브라우저 종료되면 로그아웃하기
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <title>{% block title %}title{% endblock %}</title>
     <link href = 'https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap' rel="stylesheet">
+
+    {% block head %}
+    {% endblock %}
+
     <style>
         * {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans KR', sans-serif !important;
             list-style : none;
-            text-decoration : none;
             border-collapse: collapse;
             margin : 0px;
             padding: 0px;
             }
-
+        a {
+            text-decoration : none;
+           }
         .intro_bg{
             background-image: url("/static/images/han-river.jpg");
             width : 100%;
@@ -45,6 +50,9 @@
     </style>
 </head>
 
+    {% block script %}
+    {% endblock %}
+
 <body>
     <div class ="wrap">
         <div class = "intro_bg">
@@ -62,7 +70,7 @@
                             <li><a href = "#" style = "color:white">번역</a></li>
                             <li><a href = "http://localhost:8000/web/manager/" style = "color:white">관리자</a></li>
                             {% if user.is_authenticated %}
-                                <li><a href = "{% url 'common:logout' %}" style = "color:white"> 로그아웃 </a></li>
+                                <li><a href = "{% url 'common:logout' %}" style = "color:white"> {{ user.username }}님 로그아웃 </a></li>
                             {% else %}
                                 <li><a href = "{% url 'common:login' %}" style = "color:white">로그인</a></li>
                             {% endif %}

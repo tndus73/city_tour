@@ -1,16 +1,31 @@
 {% extends 'basesimple.html' %}
 
+{% block myhead %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block mycss %}
   .wrapper {
+    margin-top : 70px;
     display: grid;
     place-items: center;
     min-height: 50vh;
+  }
+  .box {
+      padding : 20px;
+      padding-left : 70px;
+      padding-right : 70px;
+      background-color : pink;
+      border-radius : 10px;
+      border : 1px solid;
   }
 {% endblock %}
 
 {% block mycontent %}
   <div class="wrapper">
-        <img src = "/static/images/bus_icon.jpg" width = 50px height = 50px>
+    <div class="box">
+        <img src = "/static/images/logo.png" width = 200px height = 100px>
+        <br><br>
         <h1>로그인</h1>
         <form method="post" action="{% url 'common:login' %}">
           {% csrf_token %}
@@ -22,9 +37,10 @@
           <div>
             <label for="password">비밀번호</label><br>
             <input type="password" name="password" id="password">
-          </div>
-          <button type="submit">로그인</button>
+          </div> </br>
+          <button type="submit" class="btn btn-warning" style="float: right">로그인</button>
           <a href="{% url 'common:signup' %}">회원가입하기</a>
         </form>
+      </div>
     </div>
 {% endblock %}

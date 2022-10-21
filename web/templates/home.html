@@ -97,7 +97,7 @@
                             <li><a href = "#" style = "color:white">번역</a></li>
                             <li><a href = "http://localhost:8000/web/manager/" style = "color:white">관리자</a></li>
                             {% if user.is_authenticated %}
-                                <li><a href = "{% url 'common:logout' %}" style = "color:white"> 로그아웃 </a></li>
+                                <li><a href = "{% url 'common:logout' %}" style = "color:white"> {{ user.username }}님 로그아웃 </a></li>
                             {% else %}
                                 <li><a href = "{% url 'common:login' %}" style = "color:white">로그인</a></li>
                             {% endif %}
@@ -137,8 +137,8 @@
                     }
                 console.log(content)
                 dom.innerHTML = content;
-                }xhr.open("GET", "http://localhost:8000/web/homeCity/?selectedCity1="+selected_c
-            ity1);
+                }
+                xhr.open("GET", "http://localhost:8000/web/homeCity/?selectedCity1="+selected_city1);
             xhr.send();
             }
 
