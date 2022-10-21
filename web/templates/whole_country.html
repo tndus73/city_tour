@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title%}
+전국 시티 투어 정보
+{% endblock %}
+
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block css %}
+* {
+    text-decoration:none;
+}
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block contents %}
+<br>
+<div class="container my-3">
+    <h1 style = "text-align:center">전국 시티 투어 정보</h1><br><br>
+    <table class = "table">
+        <tr>
+            <th style = "width:13%;">시·도</th>
+            <th style = "width:13%;">시·구·군</th>
+            <th style = "width:35%;">투어 이름</th>
+            <th>URL</th>
+        </tr>
+        {% for data in page_obj %}
+            <tr>
+                <td>{{data.city1}}</td>
+                <td>{{data.city2}}</td>
+                <td>{{data.cos_name}}</td>
+                {% if data.url != "준비 중입니다."%}
+                    <td><a href = "{{data.url}}">{{data.url}}</a></td>
+                {% else %}
+                    <td>{{data.url}}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div id="paging">
+        <ul class="pagination justify-content-center" style="margin-top: 2rem;">
+            <!-- 이전페이지 -->
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+            <a class="page-link"
+               href="?page={{ page_obj.paginator.page_range }}">
+                처음
+            </a>
+           </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">이전</a>
+                <!-- href로 뎁스 설정 -->
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in page_obj.paginator.page_range %}
+            {% if page_number >= page_obj.number|add:-4 and page_number <= page_obj.number|add:4 %}
+            {% if page_number == page_obj.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">다음</a>
+            </li>
+            <li class="page-item">
+            <a class="page-link"
+               href="?page={{ page_obj.paginator.num_pages }}">
+                마지막
+            </a>
+           </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+        <br>
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
