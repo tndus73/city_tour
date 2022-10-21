@@ -45,8 +45,10 @@
             font-size : 19px;
             font-weight : bold;
         }
+
     {% block css %}
     {% endblock %}
+
     </style>
 </head>
 
@@ -65,7 +67,7 @@
                 <div class = "menu" style = "color:white">
                         <ul class="nav">
                             <li><a href = "http://localhost:8000/web/introduction/" style = "color:white">소개</a></li>
-                            <li><a href = "#" style = "color:white">전국</a></li>
+                            <li><a href = "http://localhost:8000/web/whole_country/" style = "color:white">전국</a></li>
                             <li><a href = "http://localhost:8000/board/board/" style = "color:white">게시판</a></li>
                             <li><a href = "#" style = "color:white">번역</a></li>
                             <li><a href = "http://localhost:8000/web/manager/" style = "color:white">관리자</a></li>
@@ -77,8 +79,16 @@
                         </ul>
                 </div>
             </div>
-            {% block contents %}{% endblock %}
+
+            {% block contents %}
+            {% endblock %}
+
         </div>
     </div>
+
+    <script>
+    {% block js %}
+    {% endblock %}
+    </script>
 </body>
 </html>

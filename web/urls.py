@@ -12,4 +12,8 @@ urlpatterns = [
  path('header/', views.header),
  path('introduction/', views.introduction),
  path('manager/', views.manager),
+ path('selectCity/', views.selectCity),
+ path('whole_country/', views.whole_country),
+ path('whole_countryS/', views.whole_country),
+
 ]
