@@ -15,9 +15,11 @@
             }  /*병합시도*/
 
         .intro_bg{
-            background-image: url("/static/images/han-river.jpg");
-            width : 100%;
-            height : 1000px;
+        height: 100vh;
+        width: 100vw;
+        background-image: url("/static/images/han-river.jpg");
+        background-repeat : no-repeat;
+        background-size : cover;
         }
 
         .header{
@@ -118,7 +120,7 @@
             color : white;
         }
         footer {
-            width : 100%;
+            width: 100vw;
             height : 40px;
             clear : both;
             background-color : orange;
@@ -189,7 +191,7 @@
             xhr.onload = function(){
                 let jsonObj = JSON.parse(xhr.responseText);
                 let dom = document.getElementsByTagName('select')[1];
-                let content="<option>시,구,군을 선택하세요</option>\n";
+                let content="<option>시·구·군을 선택하세요</option>\n";
                     for (let i in jsonObj.city2){
                         content += "<option value="+jsonObj.city2[i]+">"+jsonObj.city2[i]+"</option>\n"
                     }
