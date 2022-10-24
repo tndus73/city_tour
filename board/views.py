@@ -20,11 +20,6 @@ def posting(request, pk):
     post = Notice.objects.get(id=pk)
     return render(request, 'posting.html', {'post': post})
 
-def remove(request, post_id):
-    post = Notice.objects.get(id=post_id)
-    post.delete()
-    return redirect('/board/board/')
-
 def writing(request):
     if request.method == 'POST':
             new_article = Notice.objects.create(
@@ -34,3 +29,20 @@ def writing(request):
             )
             return redirect('/board/board/')
     return render(request, 'writing.html')
+
+def remove(request, post_id):
+    post = Notice.objects.get(id=post_id)
+    post.delete()
+    return redirect('/board/board/')
+
+def update(request, post_id):
+      post = Notice.objects.get(id=post_id)
+      if request.method == "POST":
+            post.title = request.POST['title']
+            post.name = request.POST['name']
+            post.contents = request.POST['contents']
+            post.save()
+            return redirect('/board/board/' + str(post.id), {'post': post})
+      else:
+            context = {'post':post}
+            return render(request, 'update.html', context)
