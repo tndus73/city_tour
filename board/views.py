@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from .models import Notice, Comment
+from .models import Notice1, Comment1
 from django.core.paginator import Paginator
 from django.utils import timezone
+
 # Create your views here.
 
 def board(request):
-    lists = Notice.objects.all() #모든 Board가져와 저장
+    lists = Notice1.objects.all() #모든 Board가져와 저장
     page = request.GET.get('page', '1')  # GET 방식으로 정보를 받아오는 데이터
-    question_list = Notice.objects.order_by('-time') # time기준으로 역순
+    question_list = Notice1.objects.order_by('-time') # time기준으로 역순
     paginator = Paginator(question_list, 10)  # Paginator(분할될 객체, 페이지 당 담길 객체수)
     page_obj = paginator.get_page(page)  # 페이지 번호를 받아 해당 페이지를 리턴 get_page 권장
     context = {
@@ -18,11 +19,12 @@ def board(request):
 
 def posting(request, pk):
     #pk로 한개 게시글 검색
-    post = Notice.objects.get(id=pk)
-    comments = Comment.objects.filter(post=pk)
+    post = Notice1.objects.get(id=pk)
+    comments = Comment1.objects.filter(post=pk)
     if request.method == "POST":
-        comment = Comment()
+        comment = Comment1()
         comment.post = post
+        comment.user = request.POST['user']
         comment.body = request.POST['body']
         comment.date = timezone.now()
         comment.save()
@@ -30,7 +32,7 @@ def posting(request, pk):
 
 def writing(request):
     if request.method == 'POST':
-            new_article = Notice.objects.create(
+            new_article = Notice1.objects.create(
                 title=request.POST['title'],
                 name=request.POST['name'],
                 contents=request.POST['contents'],
@@ -39,12 +41,12 @@ def writing(request):
     return render(request, 'writing.html')
 
 def remove(request, post_id):
-    post = Notice.objects.get(id=post_id)
+    post = Notice1.objects.get(id=post_id)
     post.delete()
     return redirect('/board/board/')
 
 def update(request, post_id):
-      post = Notice.objects.get(id=post_id)
+      post = Notice1.objects.get(id=post_id)
       if request.method == "POST":
             post.title = request.POST['title']
             post.name = request.POST['name']
