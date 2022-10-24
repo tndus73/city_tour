@@ -14,3 +14,7 @@ class Notice(models.Model):
     def __str__(self):
         return self.name
 
+class Comment(models.Model):
+  post = models.ForeignKey(Notice, on_delete=models.CASCADE, null=True)
+  body = models.TextField()
+  date = models.DateTimeField(auto_now_add=True)

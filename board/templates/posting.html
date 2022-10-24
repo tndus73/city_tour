@@ -57,10 +57,30 @@
                 <button type="button" class="btn btn-info"><a href="{% url 'board:update' post.id %}">수정</a></button>
             {% endif %}
 </div>
+
+<div class="container">
+    <br><hr>
+    <h3>댓글</h3>
+    {% for comment in comments %}
+    <input type="text" value = "{{comment.body}}" class="form-control">
+    {{comment.date}}
+    <div style = "float:right">작성자 : {{user.username}}</div>
+    <br>
+    {% endfor %}
+    <br>
+    <h3>댓글 달기</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea class="form-control" rows="2" cols="50" name="body" required></textarea>
+        <br><input type="submit" class="btn btn-warning" style="float: right" value="입력">
+    </form>
+</div>
+
   <div id = 'wrapper'>
         <div></div>
     </div>
     <footer>
         <p><em>Korea City Tour site(ver1.0)</em></p>
     </footer>
+
 {% endblock %}
