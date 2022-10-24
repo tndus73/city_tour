@@ -12,6 +12,22 @@
 * {
     text-decoration:none;
 }
+.searchData{
+text-align : right;
+}
+.searchDataF{
+text-align : center;
+border: 1px solid #e6e6e6;
+border-radius : 6px;
+padding-left: 20px;
+padding-right: 20px;
+height : 40px;
+width : 400px;
+font-size : 16px;
+background-image: url('/static/images/search_icon.png');
+background-repeat: no-repeat;
+background-position: 5px 6px;
+}
 {% endblock %}
 
 {% block script %}
@@ -21,41 +37,60 @@
 {% block contents %}
 <br>
 <div class="container my-3">
-    <h1 style = "text-align:center">전국 시티 투어 정보</h1><br><br>
+    <h1 style = "text-align:center"><a href = "http://localhost:8000/web/whole_country/" style ="color:black" >전국 시티 투어 정보</a></h1><br>
     <table class = "table">
+        <hr><br>
         <tr>
             <th style = "width:13%;">시·도</th>
             <th style = "width:13%;">시·구·군</th>
             <th style = "width:35%;">투어 이름</th>
             <th>URL</th>
         </tr>
-        {% for data in page_obj %}
-            <tr>
-                <td>{{data.city1}}</td>
-                <td>{{data.city2}}</td>
-                <td>{{data.cos_name}}</td>
-                {% if data.url != "준비 중입니다."%}
-                    <td><a href = "{{data.url}}">{{data.url}}</a></td>
-                {% else %}
-                    <td>{{data.url}}</td>
-                {% endif %}
-            </tr>
-        {% endfor %}
+            {% if page_obj %}<!---->
+            {% for data in page_obj %}
+                <tr>
+                    <td>{{data.city1}}</td>
+                    <td>{{data.city2}}</td>
+                    <td>{{data.cos_name}}</td>
+                    {% if data.url != "준비 중입니다."%}
+                        <td><a href = "{{data.url}}">{{data.url}}</a></td>
+                    {% else %}
+                        <td>{{data.url}}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            {% else %}<!----><!---->
+            {% for data in find_page_obj %}
+                <tr>
+                    <td>{{data.city1}}</td>
+                    <td>{{data.city2}}</td>
+                    <td>{{data.cos_name}}</td>
+                    {% if data.url != "준비 중입니다."%}
+                        <td><a href = "{{data.url}}">{{data.url}}</a></td>
+                    {% else %}
+                        <td>{{data.url}}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            {% endif %}<!----><!---->
     </table>
+    <form class = "searchData" action="http://localhost:8000/web/whole_country/" method="get" >
+        <input class = "searchDataF" type="text" placeholder="찾으시는 정보를 입력 후 엔터를 누르세요." name="q" value="{{ q }}" /> <!-- name="q"로 지정해야 views.py에서 get 방식으로 q값을 가져온 것과 동일하게 동작 -->
+        <!--<input type="submit" value="검색" /> --><!-- value=""는 기본적으로 표시되는 항목 이름 -->
+    </form>
 </div>
-
 <div id="paging">
         <ul class="pagination justify-content-center" style="margin-top: 2rem;">
             <!-- 이전페이지 -->
+            {% if page_obj %}<!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
             {% if page_obj.has_previous %}
             <li class="page-item">
-            <a class="page-link"
-               href="?page={{ page_obj.paginator.page_range }}">
+            <a class="page-link" href="?q={{q}}&page={{ page_obj.paginator.page_range }}">
                 처음
             </a>
            </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">이전</a>
+                <a class="page-link" href="?q={{q}}&page={{ page_obj.previous_page_number }}">이전</a>
                 <!-- href로 뎁스 설정 -->
             </li>
             {% else %}
@@ -68,11 +103,11 @@
             {% if page_number >= page_obj.number|add:-4 and page_number <= page_obj.number|add:4 %}
             {% if page_number == page_obj.number %}
             <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?q={{q}}&page={{ page_number }}">{{ page_number }}</a>
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?q={{q}}&page={{ page_number }}">{{ page_number }}</a>
             </li>
             {% endif %}
             {% endif %}
@@ -80,11 +115,11 @@
             <!-- 다음페이지 -->
             {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}">다음</a>
+                <a class="page-link" href="?q={{q}}&page={{ page_obj.next_page_number }}">다음</a>
             </li>
             <li class="page-item">
             <a class="page-link"
-               href="?page={{ page_obj.paginator.num_pages }}">
+               href="?q={{q}}&page={{ page_obj.paginator.num_pages }}">
                 마지막
             </a>
            </li>
@@ -93,9 +128,57 @@
                 <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
             </li>
             {% endif %}
+            {% elif find_page_obj %} <!--find_page_obj--><!----><!---->
+            {% if find_page_obj.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?q={{q}}&page={{ find_page_obj.paginator.page_range }}">
+                처음
+            </a>
+           </li>
+            <li class="page-item">
+                <a class="page-link" href="?q={{q}}&page={{ find_page_obj.previous_page_number }}">이전</a>
+                <!-- href로 뎁스 설정 -->
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in find_page_obj.paginator.page_range %}
+            {% if page_number >= find_page_obj.number|add:-4 and page_number <= find_page_obj.number|add:4 %}
+            {% if page_number == find_page_obj.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?q={{q}}&page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?q={{q}}&page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if find_page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?q={{q}}&page={{ find_page_obj.next_page_number }}">다음</a>
+            </li>
+            <li class="page-item">
+            <a class="page-link"
+               href="?q={{q}}&page={{ find_page_obj.paginator.num_pages }}">
+                마지막
+            </a>
+           </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+            {% endif %}<!----><!---->
+
         </ul>
-        <br>
-</div>
+    <br>
+
 {% endblock %}
 
 {% block js %}
