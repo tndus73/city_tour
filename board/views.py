@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from .models import Notice
+from .models import Notice, Comment
 from django.core.paginator import Paginator
+from django.utils import timezone
 # Create your views here.
 
 def board(request):
@@ -18,7 +19,14 @@ def board(request):
 def posting(request, pk):
     #pk로 한개 게시글 검색
     post = Notice.objects.get(id=pk)
-    return render(request, 'posting.html', {'post': post})
+    comments = Comment.objects.filter(post=pk)
+    if request.method == "POST":
+        comment = Comment()
+        comment.post = post
+        comment.body = request.POST['body']
+        comment.date = timezone.now()
+        comment.save()
+    return render(request, 'posting.html', {'post': post, 'comments':comments})
 
 def writing(request):
     if request.method == 'POST':
