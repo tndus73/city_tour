@@ -64,13 +64,14 @@
     {% for comment in comments %}
     <input type="text" value = "{{comment.body}}" class="form-control">
     {{comment.date}}
-    <div style = "float:right">작성자 : {{user.username}}</div>
+    <div style = "float:right">작성자 : {{comment.user}}</div><br>
     <br>
     {% endfor %}
     <br>
     <h3>댓글 달기</h3>
     <form method="POST">
         {% csrf_token %}
+        <h5>작성자 : {{user.username}}</h5>
         <textarea class="form-control" rows="2" cols="50" name="body" required></textarea>
         <br><input type="submit" class="btn btn-warning" style="float: right" value="입력">
     </form>
