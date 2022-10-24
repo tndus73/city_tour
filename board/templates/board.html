@@ -13,7 +13,7 @@
               <thead>
                   <th scope="col">번호</th>
                   <th scope="col">제목</th>
-                  <th scope="col">작성자</th>
+                  <th scope="col">작성자(아이디)</th>
                   <th scope="col">작성일</th>
               </tr>
               </thead>
@@ -26,7 +26,11 @@
                     {{ page_obj.paginator.count|sub:page_obj.start_index|sub:forloop.counter0|add:1 }}
                   </td>
                   <td>
-                      <a href ="{{list.pk}}/">{{ list.title }}</a>
+                        {% if user.id %}
+                            <a href ="{{list.pk}}/">{{ list.title }}</a>
+                        {% else %}
+                            <a href="{% url 'common:login' %}">{{ list.title }}</a>
+                        {% endif %}
                   </td>
                   <td>{{ list.name }}</td>
                   <td>{{ list.time }}</td>
@@ -39,7 +43,11 @@
               {% endif %}
               </tbody>
         </table>
-        <button type="button" class="btn btn-outline-info" style="float: right"><a href="writing/">작성하기</a></button>
+        {% if user.id %}
+            <button type="button" class="btn btn-outline-info" style="float: right"><a href="writing/">작성하기</a></button>
+        {% else %}
+            <button type="button" class="btn btn-outline-info" style="float: right"><a href="{% url 'common:login' %}">작성하기</a></button>
+        {% endif %}
     </div>
 
     <div id="paging">

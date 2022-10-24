@@ -20,23 +20,24 @@
 {% endblock %}
 {% block contents %}
 <div class = "container">
-        <h5 class = "my-3 border-bottom pb-2" style="text-align: center"> 게시글 내용</h5>
+        <h3 class = "my-3 border-bottom pb-2" style="text-align: center"> 게시글 내용</h3>
             <div class="form-group">
                 <label style="font-size:20px">제목</label>
-                <textarea class="form-control" rows="1" cols="50">{{post.title}}</textarea>
+                 <input type="text" value = "{{ post.title }}" class="form-control" name="title" id="title" required>
             </div>
             <div class="form-group">
-                <label style="font-size:20px">작성자</label>
-                <textarea class="form-control" rows="1" cols="50">{{post.name}}</textarea>
+                <label style="font-size:20px">작성자(아이디)</label>
+                <input type="text" value = "{{ post.name }}" class="form-control" name="name" id="name" required>
             </div>
             <div class="form-group">
                 <label style="font-size:20px">내용</label>
-                <textarea class="form-control" rows="10" cols="50">{{post.contents}}</textarea>
+                <textarea class="form-control" rows="10" cols="50" readonly>{{post.contents}}</textarea>
             </div>
             <br>
             <button type="button" class="btn btn-warning" style="float: right"><a href="/board/board/">목록</a></button>
             {% if post.name == user.username %}
                 <button type="button" class="btn btn-outline-primary" style="float: left"><a href="{% url 'board:remove' post.id %}">삭제</a></button>
+                <button type="button" class="btn btn-info"><a href="{% url 'board:update' post.id %}">수정</a></button>
             {% endif %}
 </div>
 
