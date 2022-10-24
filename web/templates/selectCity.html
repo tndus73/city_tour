@@ -13,7 +13,14 @@
         background-color : #e6f3ff;
         border-radius: 20px;
     }
+    #wrapper {
+        height: auto%;
+        min-height: 100%;
+        padding-bottom: 20%;
+    }
     footer {
+        position : relative;
+        transform : translateY(-100%);
         width : 100%;
         height : 40px;
         clear : both;
@@ -50,6 +57,9 @@
             <br>
         </div>
     {% endfor %}
+    </div>
+    <div id = 'wrapper'>
+        <div></div>
     </div>
     <footer>
         <p><em>Korea City Tour site(ver1.0)</em></p>

@@ -5,7 +5,7 @@ from django.template import loader
 from .models import Citytourdata
 from django.http import JsonResponse
 from django.core.paginator import Paginator
-import json
+from django.db.models import Q
 
 def homepage(request) :
  return HttpResponse("<h1>홈페이지 만들어봅시다!!</h1>")
@@ -18,7 +18,6 @@ def home(request) :
  for i in range(0,len(city1_order),1):
   a = city1_order[i]
   list_city1.append(a.get('city1'))
- print(list_city1)
  context = {
   'city1' : list_city1
  }
@@ -32,7 +31,6 @@ def homecity(request) :
  for i in range(0,len(city1_order),1):
   a = city1_order[i]
   list_city1.append(a.get('city1'))
- print(list_city1)
 ## 시도 선택 데이터
  selected_city1 = request.GET['selectedCity1']
 
@@ -54,7 +52,6 @@ def homecity(request) :
 
   dict_city2[list_city1[i]] = city2
  list_city2 = dict_city2.get(selected_city1)
- print(list_city2)
  return JsonResponse({"city2": list_city2}, json_dumps_params={'ensure_ascii':False}) #한국어 들어갈 때 필수.
 
 def header(request):
@@ -108,13 +105,12 @@ def selectCity(request):
    if "http" not in tour.get('url'):
     if "kr" in tour.get('url') or "com" in tour.get('url') or "modoo" in tour.get('url') or "danyang" in tour.get('url'):
      tour['url'] = "http://" + tour.get('url')
- print(cityTour)
  context = {
   'cityTours' : cityTour,
  }
 ## 투어별 데이터 가져오기.
  return render(request, "selectCity.html", context)
-
+'''
 def whole_country(request):
  tourdatas = Citytourdata.objects.values()
  tourdatas = tourdatas.order_by('city1')
@@ -129,13 +125,59 @@ def whole_country(request):
  # 투어 데이터 가져오기
  page = request.GET.get('page', 1)
  citytour_list = tourdatas
- print(citytour_list)
  paginator = Paginator(citytour_list, 15)
  page_obj = paginator.get_page(page)
- # 페이지 생성
-
+# 페이지 생성
  context = {
-  "tourdatas" : tourdatas,
-  "page_obj" : page_obj,
+ "tourdatas" : tourdatas,
+ "page_obj" : page_obj,
  }
  return render(request, "whole_country.html",context)
+'''
+def whole_country(request):
+ tourdatas = Citytourdata.objects.values()
+ tourdatas = tourdatas.order_by('city1')
+ for data in tourdatas:
+  if data.get('city2') == '없음':
+   data['city2'] = data.get('city1')
+  if data.get('url') == "":
+   data['url'] = "준비 중입니다."
+  if "http" not in data.get('url'):
+   if "kr" in data.get('url') or "com" in data.get('url') or "modoo" in data.get('url') or "danyang" in data.get('url'):
+    data['url'] = "http://"+ data.get('url')
+ # 투어 데이터 가져오기
+ q = request.GET.get('q', '')  #
+ print(q)
+ # value 가져오기
+ if q == '':
+  page = request.GET.get('page', 1)
+  citytour_list = tourdatas
+  paginator = Paginator(citytour_list, 15)
+  page_obj = paginator.get_page(page)
+  #  페이지 생성
+  context = {
+  "page_obj" : page_obj,
+  }
+  return render(request, "whole_country.html",context)
+ else:
+  page = request.GET.get('page', 1)
+  citytour_list = tourdatas
+  find_citytour_list =[]
+  count = 0
+  for i in range(0,len(citytour_list),1):
+   if q in citytour_list[i].get('city1') or q in citytour_list[i].get('city2') or q in citytour_list[i].get('cos_name'):
+    count+=1
+    print(count,citytour_list[i])
+    find_citytour_list.append(citytour_list[i])
+  paginator = Paginator(find_citytour_list, 15)
+  find_page_obj = paginator.get_page(page)
+  #  페이지 생성
+  context = {
+  "find_page_obj" : find_page_obj,
+   'q' : q ,
+  }
+  return render(request, "whole_country.html", context)
+
+
+
+
