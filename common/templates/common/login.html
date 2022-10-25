@@ -26,7 +26,7 @@
     <div class="box">
         <img src = "/static/images/logo.png" width = 200px height = 100px>
         <br><br>
-        <h1>로그인</h1>
+        <h1><a href = "http://localhost:8000/web/home/"><img src = "/static/images/home.png" width = 50px height = 50px></a>&nbsp;로그인</h1>
         <form method="post" action="{% url 'common:login' %}">
           {% csrf_token %}
           {% include 'common/form_errors.html' %}
@@ -39,7 +39,7 @@
             <input type="password" name="password" id="password">
           </div> </br>
           <button type="submit" class="btn btn-warning" style="float: right">로그인</button>
-          <a href="{% url 'common:signup' %}">회원가입하기</a>
+          <a href="{% url 'common:signup' %}" style="text-decoration:none; color:black">회원가입하기</a>
         </form>
       </div>
     </div>
