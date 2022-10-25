@@ -24,12 +24,24 @@
         color: white;
         font-family: 'Pretendard-Regular';
     }
+    .page_title {
+        margin-top : 2%;
+        margin-left : 15%;
+        margin-right : 15%;
+        border-radius: 15px;
+        padding-top : 10px;
+        background-color : orange;
+        height : 70px;
+        border-top : 200px;
+        }
 {% endblock %}
 
 {% block contents %}
     <div class = "container">
-        <h3 class = "my-3 border-bottom pb-2" style="text-align: center"><img src = "/static/images/update.png" width = 30px height = 30px>게시글 수정</h3>
-        <form method="POST" class="post-form my-3">
+        <div class = "page_title" style ="text-align : center">
+            <h1 style = "text-align:center; color:white"><img src = "/static/images/update.png" width = 50px height = 50px> 게시판 수정</h1><br>
+        </div><hr>
+            <form method="POST" class="post-form my-3">
             {% csrf_token %}
             <div class="form-group">
                 <label for="title" style="font-size:20px">제목</label>
