@@ -32,12 +32,34 @@
         color: white;
         font-family: 'Pretendard-Regular';
     }
+    .page_title {
+        padding-top : 20px;
+        margin-left : 25%;
+        margin-right : 25%;
+        border-radius: 15px;
+        padding-top : 20px;
+        background-color :  #6699ff;
+        height : 120px;
+        border-top : 100px;
+        style = "color : white;"
+    }
 
 {% endblock %}
 
 
 {% block contents %}
-    <div><br>
+    <div><br><br>
+        <div class = "page_title" style ="text-align : center">
+        <a href = "http://localhost:8000/web/home/" style ="color:black" >
+            {% if selectC.city1 != selectC.city2 %}
+            <img src = "/static/images/tour_bus.png" style = "height : 50px; box-shadow: 3px 3px 3px #000">
+            <h1 style = "color : white;">{{selectC.city1}} {{selectC.city2}}의 시티 투어 정보</h1>
+            {% else %}
+            <img src = "/static/images/tour_bus.png" style = "height : 50px">
+            <h1 style = "color : white;">{{selectC.city1}}의 시티 투어 정보</h1>
+            {% endif %}
+        </a>
+        </div><br>
     {% for cityTour in cityTours %}
         <div class = "citytourcourse">
             <br>

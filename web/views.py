@@ -66,6 +66,7 @@ def manager(request):
 def selectCity(request):
  selected_city1 = request.GET['selectedCity1']
  selected_city2 = request.GET['selectedCity2']
+ selectC = {'city1' : selected_city1 ,'city2' : selected_city2}
  nocity = ['울산광역시', '세종특별자치시','부산광역시']
  if selected_city2 in nocity:
   selected_city2 = '없음'
@@ -107,33 +108,11 @@ def selectCity(request):
      tour['url'] = "http://" + tour.get('url')
  context = {
   'cityTours' : cityTour,
+  'selectC' : selectC
  }
 ## 투어별 데이터 가져오기.
  return render(request, "selectCity.html", context)
-'''
-def whole_country(request):
- tourdatas = Citytourdata.objects.values()
- tourdatas = tourdatas.order_by('city1')
- for data in tourdatas:
-  if data.get('city2') == '없음':
-   data['city2'] = data.get('city1')
-  if data.get('url') == "":
-   data['url'] = "준비 중입니다."
-  if "http" not in data.get('url'):
-   if "kr" in data.get('url') or "com" in data.get('url') or "modoo" in data.get('url') or "danyang" in data.get('url'):
-    data['url'] = "http://"+ data.get('url')
- # 투어 데이터 가져오기
- page = request.GET.get('page', 1)
- citytour_list = tourdatas
- paginator = Paginator(citytour_list, 15)
- page_obj = paginator.get_page(page)
-# 페이지 생성
- context = {
- "tourdatas" : tourdatas,
- "page_obj" : page_obj,
- }
- return render(request, "whole_country.html",context)
-'''
+
 def whole_country(request):
  tourdatas = Citytourdata.objects.values()
  tourdatas = tourdatas.order_by('city1')

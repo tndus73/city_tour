@@ -54,7 +54,9 @@
             <button type="button" class="btn btn-warning" style="float: right"><a href="/board/board/">목록</a></button>
             {% if post.name == user.username %}
                 <button type="button" class="btn btn-outline-primary" style="float: left"><a href="{% url 'board:remove' post.id %}">삭제</a></button>
+                <div style = "text-align:center;">
                 <button type="button" class="btn btn-info"><a href="{% url 'board:update' post.id %}">수정</a></button>
+                </div>
             {% endif %}
 </div>
 
