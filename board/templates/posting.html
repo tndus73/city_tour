@@ -63,11 +63,11 @@
                 <textarea class="form-control" rows="10" cols="50" readonly>{{post.contents}}</textarea>
             </div>
             <br>
-            <button type="button" class="btn btn-warning" style="float: right"><a href="/board/board/">목록</a></button>
+            <button type="button" class="btn btn-warning" style="float: right;"><a href="/board/board/" style=color:black;">목록</a></button>
             {% if post.name == user.username %}
                 <button type="button" class="btn btn-outline-primary" style="float: left"><a href="{% url 'board:remove' post.id %}">삭제</a></button>
                 <div style = "text-align:center;">
-                <button type="button" class="btn btn-info"><a href="{% url 'board:update' post.id %}">수정</a></button>
+                <button type="button" class="btn btn-info"><a href="{% url 'board:update' post.id %}" style="color:white;">수정</a></button>
                 </div>
             {% endif %}
 </div>
@@ -85,7 +85,7 @@
     <h3>댓글 달기</h3>
     <form method="POST">
         {% csrf_token %}
-        <input type="text" name="user" value = "작성자 : {{user.username}}" style="width:150px" class="form-control">
+        <input type="text" name="user" value = "작성자 : {{user.username}}" style="width:150px" class="form-control" readonly>
         <textarea class="form-control" rows="2" cols="50" name="body" required></textarea>
         <br><input type="submit" class="btn btn-warning" style="float: right" value="입력">
     </form>

@@ -52,21 +52,39 @@
               <tbody>
               {% if page_obj %}
               {% for list in page_obj %}
-              <tr>
-                  <td>
-                    <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                    {{ page_obj.paginator.count|sub:page_obj.start_index|sub:forloop.counter0|add:1 }}
-                  </td>
-                  <td>
-                        {% if user.id %}
-                            <a href ="{{list.pk}}/">{{ list.title }}</a>
-                        {% else %}
-                            <a href="{% url 'common:login' %}">{{ list.title }}</a>
-                        {% endif %}
-                  </td>
-                  <td>{{ list.name }}</td>
-                  <td>{{ list.time }}</td>
-              </tr>
+                {% if list.name == "관리자" %}
+                      <tr class="table-danger">
+                          <td>
+                            <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                            {{ page_obj.paginator.count|sub:page_obj.start_index|sub:forloop.counter0|add:1 }}
+                          </td>
+                          <td>
+                                {% if user.id %}
+                                    <a href ="{{list.pk}}/">{{ list.title }}</a>
+                                {% else %}
+                                    <a href="{% url 'common:login' %}">{{ list.title }}</a>
+                                {% endif %}
+                          </td>
+                          <td>{{ list.name }}</td>
+                          <td>{{ list.time }}</td>
+                      </tr>
+                {% else %}
+                    <tr>
+                          <td>
+                            <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                            {{ page_obj.paginator.count|sub:page_obj.start_index|sub:forloop.counter0|add:1 }}
+                          </td>
+                          <td>
+                                {% if user.id %}
+                                    <a href ="{{list.pk}}/">{{ list.title }}</a>
+                                {% else %}
+                                    <a href="{% url 'common:login' %}">{{ list.title }}</a>
+                                {% endif %}
+                          </td>
+                          <td>{{ list.name }}</td>
+                          <td>{{ list.time }}</td>
+                      </tr>
+                {% endif %}
               {% endfor %}
               {% else %}
               <tr>
@@ -76,7 +94,7 @@
               </tbody>
         </table>
         {% if user.id %}
-            <button type="button" class="btn btn-outline-info" style="float: right"><a href="writing/">작성하기</a></button>
+            <button type="button" class="btn btn-warning" style="float: right;"><a href="writing/" style=color:black;">작성하기</a></button>
         {% else %}
             <button type="button" class="btn btn-outline-info" style="float: right"><a href="{% url 'common:login' %}">작성하기</a></button>
         {% endif %}
