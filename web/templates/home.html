@@ -138,17 +138,17 @@
         <div class = "intro_bg">
             <div class = "header">
                 <div class = "iconarea">        <!--이유xx-->
-                    <a href ="{% url 'home' %}" >  <!--메인 아이콘-->
+                    <a href ="{% url 'web:home' %}" >  <!--메인 아이콘-->
                         <img src = "/static/images/logo.png" width = 200px height = 100px>
                     </a>
                 </div>
                 <div class = "menu">
                         <ul class="nav">
-                            <li><a href = "{% url 'introduction' %}" style = "color:white">소개</a></li>
-                            <li><a href = "{% url 'whole_country' %}" style = "color:white">전국</a></li>
+                            <li><a href = "{% url 'web:introduction' %}" style = "color:white">소개</a></li>
+                            <li><a href = "{% url 'web:whole_country' %}" style = "color:white">전국</a></li>
                             <li><a href = "{% url 'board:board' %}" style = "color:white">게시판</a></li>
                             <li><a href = "#" style = "color:white">번역</a></li>
-                            <li><a href = "{% url 'manager' %}" style = "color:white">관리자</a></li>
+                            <li><a href = "{% url 'web:manager' %}" style = "color:white">관리자</a></li>
                             {% if user.is_authenticated %}
                                 <li><a href = "{% url 'common:logout' %}" style = "color:white"> {{ user.username }}님 로그아웃 </a></li>
                             {% else %}
@@ -182,7 +182,7 @@
     </div>
     <footer>
         <p><em>Korea City Tour site(ver1.0)</em></p>
-    </footer><!--베이스에 추가 시 삭제해야함.--> "{% url 'homeCity' %}"
+    </footer><!--베이스에 추가 시 삭제해야함.--> "{% url 'web:homeCity' %}"
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
         function find_city2(){
@@ -198,14 +198,14 @@
                 console.log(content)
                 dom.innerHTML = content;
                 }
-            xhr.open("GET", "{% url 'homeCity' %}?selectedCity1="+selected_city1);
+            xhr.open("GET", "{% url 'web:homeCity' %}?selectedCity1="+selected_city1);
             xhr.send();
             }
 
         function go(){
             selected_city1 = document.getElementById("city1").value;
             selected_city2 = document.getElementById("city2").value;
-            location.href = "{% url 'selectCity' %}?selectedCity1="+selected_city1+"&selectedCity2="+selected_city2;
+            location.href = "{% url 'web:selectCity' %}?selectedCity1="+selected_city1+"&selectedCity2="+selected_city2;
         }
     </script>
 </body>

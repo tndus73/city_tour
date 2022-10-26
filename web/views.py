@@ -93,7 +93,7 @@ def selectCity(request):
    selected_city2 = "경기 남부권"
   if selected_city2 == "경기동부권":
    selected_city2 = "경기 동부권"
-  if selected_city2 == "경기 동북권":
+  if selected_city2 == "경기동북권":
    selected_city2 = "경기 동북권"
   if selected_city2 == "경기서부권":
    selected_city2 = "경기 서부권"
