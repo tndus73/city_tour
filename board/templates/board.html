@@ -34,6 +34,23 @@
     height : 70px;
     border-top : 200px;
     }
+    .searchData{
+        text-align : right;
+    }
+    .searchDataF{
+        text-align : center;
+        border: 1px solid #e6e6e6;
+        border-radius : 6px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-right : 15px;
+        height : 40px;
+        width : 400px;
+        font-size : 16px;
+        background-image: url('/static/images/search_icon.png');
+        background-repeat: no-repeat;
+        background-position: 5px 6px;
+    }
 {% endblock %}
 
 {% block contents %}
@@ -99,7 +116,9 @@
             <button type="button" class="btn btn-outline-info" style="float: right"><a href="{% url 'common:login' %}">작성하기</a></button>
         {% endif %}
     </div>
-
+    <form class = "searchData" action="http://localhost:8000/board/board/" method="get" >
+        <input class = "searchDataF" type="text" placeholder="찾으시는 정보를 입력 후 엔터를 누르세요." name="q" value="{{ q }}" /> <!-- name="q"로 지정해야 views.py에서 get 방식으로 q값을 가져온 것과 동일하게 동작 -->
+    </form>
     <div id="paging">
         <ul class="pagination justify-content-center" style="margin-top: 2rem;">
             <!-- 이전페이지 -->

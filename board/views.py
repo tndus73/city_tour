@@ -7,15 +7,33 @@ from django.utils import timezone
 # Create your views here.
 
 def board(request):
-    lists = Notice1.objects.all() #모든 Board가져와 저장
-    page = request.GET.get('page', '1')  # GET 방식으로 정보를 받아오는 데이터
-    question_list = Notice1.objects.order_by('-time') # time기준으로 역순
-    paginator = Paginator(question_list, 10)  # Paginator(분할될 객체, 페이지 당 담길 객체수)
-    page_obj = paginator.get_page(page)  # 페이지 번호를 받아 해당 페이지를 리턴 get_page 권장
-    context = {
+    q = request.GET.get('q', '')
+    if q == "":
+        lists = Notice1.objects.all() #모든 Board가져와 저장
+        page = request.GET.get('page', '1')  # GET 방식으로 정보를 받아오는 데이터
+        question_list = Notice1.objects.order_by('-time') # time기준으로 역순
+        print(question_list)
+        paginator = Paginator(question_list, 10)  # Paginator(분할될 객체, 페이지 당 담길 객체수)
+        page_obj = paginator.get_page(page)  # 페이지 번호를 받아 해당 페이지를 리턴 get_page 권장
+        context = {
         'page_obj': page_obj,
-    }
-    return render(request, 'board.html', context)
+        }
+        return render(request, 'board.html', context)
+    else:
+        lists = Notice1.objects.values() #모든 Board가져와 저장
+        page = request.GET.get('page', '1')  # GET 방식으로 정보를 받아오는 데이터
+        question_list = lists.order_by('-time') # time기준으로 역순
+        find_question_list=[]
+        for i in range(0,len(question_list),1):
+            if q in question_list[i].get('name') or q in question_list[i].get('contents') or q in question_list[i].get('title'):
+                find_question_list.append(question_list[i])
+        paginator = Paginator(find_question_list, 10)  # Paginator(분할될 객체, 페이지 당 담길 객체수)
+        page_obj = paginator.get_page(page)  # 페이지 번호를 받아 해당 페이지를 리턴 get_page 권장
+        context = {
+        'page_obj': page_obj,
+        }
+        return render(request, 'board.html', context)
+
 
 def posting(request, pk):
     #pk로 한개 게시글 검색
