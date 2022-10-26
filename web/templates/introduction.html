@@ -108,7 +108,7 @@
 <!--위는 우리 페이지는 ~~이고 ~~기능을 담고 있다-->
 <div class = "introlr">
     <div class = "intro_left">
-        <a href = "{% url 'home' %}"><img class = "intropic" src="/static/images/search.png"></a>
+        <a href = "{% url 'web:home' %}"><img class = "intropic" src="/static/images/search.png"></a>
     </div>
     <div class = "intro_right">
         <h3>-시티투어 지역 선택-</h3>
@@ -120,7 +120,7 @@
 <!--첫 홈페이지에서 지역을 선택하면 해당 지역의 시티투어를 소개해준다.-->
 <div class = "introlr">
     <div class = "intro_left">
-        <a href = "{% url 'whole_country' %}"><img class = "intropic" src="/static/images/tourin.png"></a>
+        <a href = "{% url 'web:whole_country' %}"><img class = "intropic" src="/static/images/tourin.png"></a>
     </div>
     <div class = "intro_right">
         <h3>-전국 URL 이용하기-</h3>
@@ -156,7 +156,7 @@
 <!--관리자의 기능-->
 <div class = "introlr">
     <div class = "intro_left">
-        <a href = "{% url 'manager' %}"><img class = "intropic" src="/static/images/ourteam.png"></a>
+        <a href = "{% url 'web:manager' %}"><img class = "intropic" src="/static/images/ourteam.png"></a>
     </div>
     <div class = "intro_right">
         <h3>-관리자 살펴보기-</h3>

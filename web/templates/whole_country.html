@@ -66,7 +66,7 @@
 <br><br>
 <div class="container my-3">
     <div class = "page_title" style ="text-align : center">
-        <a href = "{% url 'whole_country' %}" style ="color:black" >
+        <a href = "{% url 'web:whole_country' %}" style ="color:black" >
             <h1 style="color : white"><img src = "/static/images/south-korea.png" > 전국 시티 투어 정보</h1>
         </a>
     </div><br><hr>
@@ -106,7 +106,7 @@
             {% endfor %}
             {% endif %}<!----><!---->
     </table>
-    <form class = "searchData" action="{% url 'whole_country' %}" method="get" >
+    <form class = "searchData" action="{% url 'web:whole_country' %}" method="get" >
         <input class = "searchDataF" type="text" placeholder="찾으시는 정보를 입력 후 엔터를 누르세요." name="q" value="{{ q }}" /> <!-- name="q"로 지정해야 views.py에서 get 방식으로 q값을 가져온 것과 동일하게 동작 -->
         <!--<input type="submit" value="검색" /> --><!-- value=""는 기본적으로 표시되는 항목 이름 -->
     </form>
