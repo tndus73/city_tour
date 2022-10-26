@@ -116,7 +116,7 @@
             <button type="button" class="btn btn-outline-info" style="float: right"><a href="{% url 'common:login' %}">작성하기</a></button>
         {% endif %}
     </div>
-    <form class = "searchData" action="http://localhost:8000/board/board/" method="get" >
+    <form class = "searchData" action="{% url 'board:board' %}" method="get" >
         <input class = "searchDataF" type="text" placeholder="찾으시는 정보를 입력 후 엔터를 누르세요." name="q" value="{{ q }}" /> <!-- name="q"로 지정해야 views.py에서 get 방식으로 q값을 가져온 것과 동일하게 동작 -->
     </form>
     <div id="paging">
