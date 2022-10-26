@@ -26,7 +26,7 @@
     <div class="box">
         <img src = "/static/images/logo.png" width = 200px height = 100px>
         <br><br>
-        <h1><a href = "http://localhost:8000/web/home/"><img src = "/static/images/home.png" width = 50px height = 50px></a>&nbsp;로그인</h1>
+        <h1><a href = "{% url 'home' %}"><img src = "/static/images/home.png" width = 50px height = 50px></a>&nbsp;로그인</h1>
         <form method="post" action="{% url 'common:login' %}">
           {% csrf_token %}
           {% include 'common/form_errors.html' %}
