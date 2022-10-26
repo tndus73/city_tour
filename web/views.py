@@ -51,6 +51,16 @@ def homecity(request) :
   for k in range(0,len(city2),1):
    if city2[k] == '없음':
     city2[k] = list_city1[i]
+   if city2[k] == "경기 남부권":
+    city2[k] = "경기남부권"
+   if city2[k] == "경기 서부권":
+    city2[k] = "경기서부권"
+   if city2[k] == "경기 동부권":
+    city2[k] = "경기동부권"
+   if city2[k] == "경기 동북권":
+    city2[k] = "경기동북권"
+   if city2[k] == "경기 서북부권":
+    city2[k] = "경기서북부권"
 
   dict_city2[list_city1[i]] = city2
  list_city2 = dict_city2.get(selected_city1)
@@ -77,6 +87,19 @@ def selectCity(request):
    data['city2'] = '연수구, 중구, 동구'
   city_datas = city_data.filter(city1='인천광역시').values()
  else:
+  city_datas = city_data.filter(city2=selected_city2).values()
+ if selected_city1 == '경기도':
+  if selected_city2 == "경기남부권":
+   selected_city2 = "경기 남부권"
+  if selected_city2 == "경기동부권":
+   selected_city2 = "경기 동부권"
+  if selected_city2 == "경기 동북권":
+   selected_city2 = "경기 동북권"
+  if selected_city2 == "경기서부권":
+   selected_city2 = "경기 서부권"
+  if selected_city2 == "경기서북부권":
+   selected_city2 = "경기 서북부권"
+
   city_datas = city_data.filter(city2=selected_city2).values()
  ## 선택한 지역의 시티투어 데이터 가져오기.
  tour_name = city_datas.values('cos_name')
@@ -165,3 +188,6 @@ def whole_country(request):
    'q' : q ,
   }
   return render(request, "whole_country.html", context)
+
+
+
