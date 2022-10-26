@@ -41,6 +41,8 @@ def homecity(request) :
   city2 = []
 
   for j in range(0,len(city),1):
+   if city[j].get('city1') == '인천광역시':
+    city[j]['city2'] = '연수구, 중구, 동구'
    a = city[j].get('city2')
    city2.append(a)
   city2 = list(set(city2))
@@ -66,12 +68,16 @@ def manager(request):
 def selectCity(request):
  selected_city1 = request.GET['selectedCity1']
  selected_city2 = request.GET['selectedCity2']
- selectC = {'city1' : selected_city1 ,'city2' : selected_city2}
  nocity = ['울산광역시', '세종특별자치시','부산광역시']
  if selected_city2 in nocity:
   selected_city2 = '없음'
  city_data = Citytourdata.objects.filter(city1=selected_city1).values()
- city_datas = city_data.filter(city2=selected_city2).values()
+ if selected_city2 == "연수구,":
+  for data in city_data:
+   data['city2'] = '연수구, 중구, 동구'
+  city_datas = city_data.filter(city1='인천광역시').values()
+ else:
+  city_datas = city_data.filter(city2=selected_city2).values()
  ## 선택한 지역의 시티투어 데이터 가져오기.
  tour_name = city_datas.values('cos_name')
  tour_name = tour_name.order_by('cos_name')
@@ -79,7 +85,7 @@ def selectCity(request):
  for i in range(0, len(tour_name), 1):
   name = tour_name[i]
   list_tour.append(name.get('cos_name'))
- print(list_tour)
+
  ## 선택한 지역의 시티투어 이름 가져오기
  cityTour = []
  for cos_name in list_tour:
@@ -106,6 +112,9 @@ def selectCity(request):
    if "http" not in tour.get('url'):
     if "kr" in tour.get('url') or "com" in tour.get('url') or "modoo" in tour.get('url') or "danyang" in tour.get('url'):
      tour['url'] = "http://" + tour.get('url')
+ if selected_city1 == "인천광역시":
+  selected_city2 = "연수구, 중구, 동구"
+ selectC = {'city1': selected_city1,'city2': selected_city2,}
  context = {
   'cityTours' : cityTour,
   'selectC' : selectC
@@ -156,7 +165,3 @@ def whole_country(request):
    'q' : q ,
   }
   return render(request, "whole_country.html", context)
-
-
-
-
