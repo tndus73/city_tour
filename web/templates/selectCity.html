@@ -51,7 +51,10 @@
     <div><br><br>
         <div class = "page_title" style ="text-align : center">
         <a href = "http://localhost:8000/web/home/" style ="color:black" >
-            {% if selectC.city1 != selectC.city2 %}
+            {% if selectC.city2 == '없음' %}
+            <img src = "/static/images/tour_bus.png" style = "height : 50px">
+            <h1 style = "color : white;">{{selectC.city1}}의 시티 투어 정보</h1>
+            {% elif selectC.city1 != selectC.city2 %}
             <img src = "/static/images/tour_bus.png" style = "height : 50px; box-shadow: 3px 3px 3px #000">
             <h1 style = "color : white;">{{selectC.city1}} {{selectC.city2}}의 시티 투어 정보</h1>
             {% else %}
